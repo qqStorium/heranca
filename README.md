@@ -11,5 +11,10 @@
 * Os arquivos estão sem quebras de linha para deixar você livre e personalizar
 * Mude os textos dos souts colocando algo com sua cara, ou apenas coloque de um jeito diferente
 ***
+# Sobre os packages
+![ilustração packages java](https://cdn.discordapp.com/attachments/731009325707034677/769763630236827668/Captura_de_Tela_132.png)
+
+Para funcionar corretamente, você deve criar um package para cada exercicio e lá colocar todas as classes do exercicio, assim como na ilustração. Mantendo o nome do package criado no codigo de cada classe do exercicio.
+***
 # Seja feliz!
 Seguindo todas as recomendações o sucesso é garantido, seja feliz!
