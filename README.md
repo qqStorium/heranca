@@ -10,6 +10,9 @@
 * Use nomes de variavels do seu jeito
 * Os arquivos estão sem quebras de linha para deixar você livre e personalizar
 * Mude os textos dos souts colocando algo com sua cara, ou apenas coloque de um jeito diferente
+* Altere a ordem de declaração dos atributos, metodos etc.
+* Altere a ordem de das perguntas (os souts)
+* Altere os valores fixos (por exemplos, os da classe ingresso)
 ***
 # Sobre os packages
 ![ilustração packages java](https://cdn.discordapp.com/attachments/731009325707034677/769763630236827668/Captura_de_Tela_132.png)
