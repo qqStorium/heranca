@@ -15,8 +15,7 @@ import java.util.Scanner;
 public class TesteAnimal {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        ArrayList<Peixe> peixes = new ArrayList();
-        ArrayList<Mamifero> mamiferos = new ArrayList();
+        ArrayList<Animal> animais = new ArrayList();
         
         int opcao = 1;
         while(opcao != 0) {
@@ -42,7 +41,7 @@ public class TesteAnimal {
                     int caudas = sc.nextInt();
                     
                     Peixe peixe = new Peixe(nomePeixe, comprimentoPeixe, velocidadePeixe, barbatanas, caudas);
-                    peixes.add(peixe);
+                    animais.add(peixe);
                     
                     System.out.println("Peixe cadastrado com sucesso!\n");
                 break;
@@ -59,40 +58,27 @@ public class TesteAnimal {
                     String alimento = sc.next();
                     
                     Mamifero mamifero = new Mamifero(nomeMamifero, comprimentoMamifero, cor, velocidadeMamifero, alimento);
-                    mamiferos.add(mamifero);
+                    animais.add(mamifero);
                     
                     System.out.println("Mamifero cadastrado com sucesso!\n");
                 break;
                 case 3:
-                    if(mamiferos.size() == 0 && peixes.size() == 0) {
+                    if(animais.size() == 0) {
                         System.out.println("Nenhum animal cadastrado, CADASTRE ANTES SEU ANIMAL :)");
                     } else {
                         System.out.println("Animais cadastrados: ");
                         
-                        for(int i = 0; i < mamiferos.size(); i++) {
-                            Mamifero m = mamiferos.get(i);
-                            System.out.println("Mamifero: " + m.getNome());
+                        for(int i = 0; i < animais.size(); i++) {
+                            System.out.println(animais.get(i).getNome());
                         }
-                        
-                        System.out.println("\n");
-                        
-                        for(int i = 0; i < peixes.size(); i++) {
-                            Peixe p = peixes.get(i);
-                            System.out.println("Peixe: " + p.getNome());
-                        }
-                        
-                        System.out.println("\n");
                     }
                 break;
                 case 4:
-                    if(peixes.size() == 0) {
-                        System.out.println("Nenhum peixe cadastrado..........................");
-                    } else {
-                        for(int i = 0; i < peixes.size(); i++) {
-                            Peixe p = peixes.get(i);
-                            System.out.println("Peixe: " + p.getNome());
-                        }
-                        System.out.println("\n");
+                    for(int i = 0; i < animais.size(); i++) {
+                        if(animais.get(i) instanceof Peixe) {
+                            Peixe p = (Peixe) animais.get(i);
+                            System.out.println(p.getNome());
+                        }        
                     }
                 break;
                 default:
