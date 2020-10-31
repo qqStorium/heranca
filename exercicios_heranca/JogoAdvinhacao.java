@@ -11,7 +11,6 @@ public class JogoAdvinhacao {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         ArrayList<Pergunta> perguntas = new ArrayList();
-        ArrayList<PerguntaDificil> perguntasDificeis = new ArrayList();
         for(int i = 0; i < 4; i++) {
             System.out.print("Digite a dica da perguta: ");
             String dica = teclado.nextLine();
@@ -28,7 +27,7 @@ public class JogoAdvinhacao {
             System.out.print("Digite a resposta: ");
             String resposta = teclado.nextLine();
             PerguntaDificil pergunta = new PerguntaDificil(dica2, dica, resposta);
-            perguntasDificeis.add(pergunta);
+            perguntas.add(pergunta);
         }
         System.out.print("Digite o nome do primeiro jogador: ");
         String nomeJogador1 = teclado.nextLine();
@@ -44,10 +43,10 @@ public class JogoAdvinhacao {
         if(jogo.obterVencedor() != null) {
             System.out.println("O vencedor é " + jogo.obterVencedor());
         } else {
-            jogo.realizarPergunta(perguntasDificeis.get(0), jogador1);
-            jogo.realizarPergunta(perguntasDificeis.get(1), jogador1);
-            jogo.realizarPergunta(perguntasDificeis.get(0), jogador2);
-            jogo.realizarPergunta(perguntasDificeis.get(1), jogador2);
+            jogo.realizarPergunta(perguntas.get(4), jogador1);
+            jogo.realizarPergunta(perguntas.get(5), jogador1);
+            jogo.realizarPergunta(perguntas.get(4), jogador2);
+            jogo.realizarPergunta(perguntas.get(5), jogador2);
             if(jogo.obterVencedor() != null) {
                 System.out.println("O vencedor é " + jogo.obterVencedor());
             } else {
