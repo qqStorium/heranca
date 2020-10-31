@@ -7,8 +7,7 @@ import java.util.Scanner;
 public class TesteConta {
     public static void main(String[] args) {
         Scanner sc =  new Scanner(System.in);
-        ArrayList<ContaPoupanca> contasPoupanca = new ArrayList();
-        ArrayList<ContaEspecial> contasEspecial = new ArrayList();
+        ArrayList<ContaBancaria> contas = new ArrayList();
         
         while(true) {
             System.out.println("1) Incluir dados relativos a conta de um cliente (Limitado a 5 contas);\n" +
@@ -23,7 +22,7 @@ public class TesteConta {
             
             switch(opcao) {
                 case 1:
-                    if(contasPoupanca.size() + contasEspecial.size() < 5) {
+                    if(contas.size() < 5) {
                         System.out.println("Digite o nome do cliente: ");
                         String nome = sc.next();
 
@@ -44,7 +43,7 @@ public class TesteConta {
                                 System.out.println("Digite o dia de rendimento: ");
                                 int dia = sc.nextInt();
                                 ContaPoupanca conta = new ContaPoupanca(nome, numero, saldo, dia);
-                                contasPoupanca.add(conta);
+                                contas.add(conta);
                                 System.out.println("Conta criada!\n");
                             } else if(tipo == 2) {
                                 float limite = 0;
@@ -53,7 +52,7 @@ public class TesteConta {
                                     limite = sc.nextFloat();
                                 }
                                 ContaEspecial conta = new ContaEspecial(nome, numero, saldo, limite);
-                                contasEspecial.add(conta);
+                                contas.add(conta);
                                 System.out.println("Conta criada!\n");
                             }
                         }
@@ -69,17 +68,10 @@ public class TesteConta {
                     System.out.println("Digite o número da conta que deseja sacar: ");
                     int numeroSacar = sc.nextInt();
                     
-                    int sizePoupanca = contasPoupanca.size();
-                    for(int i = 0; i < sizePoupanca; i++) {
-                        if(numeroSacar == contasPoupanca.get(i).getNumeroConta()) {
-                            contasPoupanca.get(i).sacar(valor);
-                        }
-                    }
-                    
-                    int sizeEspecial = contasEspecial.size();
-                    for(int i = 0; i < sizeEspecial; i++) {
-                        if(numeroSacar == contasEspecial.get(i).getNumeroConta()) {
-                            contasEspecial.get(i).sacar(valor);
+                    int size = contas.size();
+                    for(int i = 0; i < size; i++) {
+                        if(numeroSacar == contas.get(i).getNumeroConta()) {
+                            contas.get(i).sacar(valor);
                         }
                     }
                     
@@ -92,45 +84,45 @@ public class TesteConta {
                     System.out.println("Digite o número da conta que deseja depositar: ");
                     numeroSacar = sc.nextInt();
                     
-                    sizePoupanca = contasPoupanca.size();
-                    for(int i = 0; i < sizePoupanca; i++) {
-                        if(numeroSacar == contasPoupanca.get(i).getNumeroConta()) {
-                            contasPoupanca.get(i).depositar(valor);
+                    size = contas.size();
+                    for(int i = 0; i < size; i++) {
+                        if(numeroSacar == contas.get(i).getNumeroConta()) {
+                            contas.get(i).depositar(valor);
                         }
                     }
-                    
-                    sizeEspecial = contasEspecial.size();
-                    for(int i = 0; i < sizeEspecial; i++) {
-                        if(numeroSacar == contasEspecial.get(i).getNumeroConta()) {
-                            contasEspecial.get(i).depositar(valor);
-                        }
-                    }
+
                 break;
                 
                 case 4:
                     System.out.println("Digite o nome do cliente com conta poupanca: ");
                     String nomeBuscar = sc.next();
-                    
-                    sizePoupanca = contasPoupanca.size();
-                    for(int i = 0; i < sizePoupanca; i++) {
-                        if(nomeBuscar.equals(contasPoupanca.get(i).getNomeCliente())) {
-                            System.out.println("Digite a taxa de rendimento: ");
-                            float taxa = sc.nextFloat();
-                            contasPoupanca.get(i).calcularNovoSaldo(taxa);
-                            System.out.println("O novo saldo é de R$" + contasPoupanca.get(i).getSaldo() + "\n");
+                       
+                    size = contas.size();
+                    for(int i = 0; i < size; i++) {
+                        if( contas.get(i) instanceof ContaPoupanca) {
+                            ContaPoupanca contapoupanca = (ContaPoupanca ) contas.get(i);
+                            
+                            if(nomeBuscar.equals(contapoupanca.getNomeCliente())) {
+                                System.out.println("Digite a taxa de rendimento: ");
+                                float taxa = sc.nextFloat();
+                                contapoupanca.calcularNovoSaldo(taxa);
+                                System.out.println("O novo saldo é de R$" + contapoupanca.getSaldo() + "\n");
+                            }
                         }
+                        
                     }
                 break;
                 
                 case 5:
-                    sizePoupanca = contasPoupanca.size();
-                    for(int i = 0; i < sizePoupanca; i++) {
-                        contasPoupanca.get(i).getDados();
-                    }
-                    
-                    sizeEspecial = contasEspecial.size();
-                    for(int i = 0; i < sizeEspecial; i++) {
-                        contasEspecial.get(i).getDados();
+                    size = contas.size();
+                    for(int i = 0; i < size; i++) {
+                        if(contas.get(i) instanceof ContaPoupanca) {
+                            ContaPoupanca contapoupanca = (ContaPoupanca) contas.get(i);
+                            contapoupanca.getDados();
+                        } else if(contas.get(i) instanceof ContaEspecial) {
+                            ContaEspecial contaespecial = (ContaEspecial) contas.get(i);
+                            contaespecial.getDados();
+                        }
                     }
                 break;
             }
